@@ -29,6 +29,18 @@ body {
     box-shadow:0 0 8px 3px var(--dark-purple);
 }
 
+#start-btn, #next-btn {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding: 30px;
+}
+
+.control-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .btn-setup {
     display: grid;
     margin-top: 20px;
@@ -45,4 +57,8 @@ body {
 
 .btn:hover {
     background-color: var(--dark-purple);
+}
+
+.hide {
+    display: none;
 }

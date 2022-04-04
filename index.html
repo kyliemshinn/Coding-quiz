@@ -8,8 +8,13 @@
     <title>Coding Quiz</title>
 </head>
 <body>
+    <header>
+        <h1>Lets Test Your Coding Knowledge!</h1>
+        <h2 class="highscores">HighScores</h2>
+        <h2> Time Remaining: <span id="timer"></span></h2>
+    </header>
     <div class="quiz-container">
-        <div id="question-box">
+        <div id="question-box" class="hide">
             <div id="quiz-questions">Questions!</div>
             <div id="answer-btns" class="btn-setup">
                 <button class="btn">answer 1</button>
@@ -20,7 +25,7 @@
         </div>
         <div class="control-btns">
             <button id="start-btn" class="btn">Lets Begin!</button>
-            <button id="next-btn" class="btn">Next..</button>
+            <button id="next-btn" class="btn hide">Next..</button>
         </div>
 
         
