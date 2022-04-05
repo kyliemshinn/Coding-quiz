@@ -3,6 +3,8 @@
 //all buttons
 var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
+var nextButton=  document.getElementById("next-btn");
+var  answerButtons= document.getElementById("ans-btn")
 
 //for the questions
 var container = document.getElementById("quiz-container")
@@ -67,14 +69,16 @@ startButton.addEventListener("click", startGame)
 
 // a function that starts the game to play, the start button will hide, and the question box will pop up
 function startGame () {
+end=false;
 
 startButton.classList.add("hide");
 questionBox.classList.remove("hide");
 
-shuffledQuestions= questions.sort(() => Math.random() - .5);
+timer.style.display = `block`;
+
+shuffledQuestions= questions.sort(() => Math.random() - .5);//either less than zero or above zero 50% of time
 questionIndex = 0;
 
-timer.style.display = `block`;
 
 nextQuestion();
 startTimer();
@@ -82,12 +86,13 @@ startTimer();
 
 //setting parameters of the timer
 function startTimer() {
+    end=false;
     var timerInterval = setInterval(function() {
         if(end) { 
             clearInterval(timerInterval); 
             return;
         }
-        if(timeLeft < 1) { 
+        if(timeRemain < 1) { 
             clearInterval(timerInterval); 
             endGame(); 
         }
@@ -102,12 +107,6 @@ function startTimer() {
 
 //creating a function to transition to the next question
 function nextQuestion() {
-    questionIndex++;
-    if(questionIndex > questions.question.length) {
-        endGame();
-    } else {
-        displayQuestions(questionIndex)
-    }
 
 
     displayQuestions(shuffledQuestions[questionIndex]); 
@@ -116,11 +115,19 @@ function nextQuestion() {
 
 function displayQuestions(question) {
     questionEl.innerText=question.question;
-    selectAnswer(questionIndex);
+  
+    answerEl.innerText=question.possibleAnswers;
+
 }
 
+
 //what happens when you select the correct answer
-function selectAnswer(questionIndex) {
+function selectAnswer(e) {
+if(possibleAnswers === correctAnswer) {
+    alert("Correct!")
+} else { alert("Wrong:(")
+
+}
 
     
 }
