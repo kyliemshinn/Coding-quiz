@@ -12,9 +12,29 @@ var questions=[
         correctAnswer: "HTML"
     }, 
     {
-        question: "What does CSS stand for?"
-        possibleAnswers: ["Canvas Style Sheets", "Customizable"]
-        correctAnswer: 
+        question: "What does CSS stand for?",
+        possibleAnswers: ["Canvas Style Sheets", "Coding Sample Sheet", "Cascading Style Sheet", "Customizable Shade Schemes"],
+        correctAnswer: "Cascading Style Sheets"
+    },
+    {
+        question: "What Javascript feature lets you run the same block of code multiple times?",
+        possibleAnswers: ["Booleans", "Maps", "Arrays", "For loops"],
+        correctAnswer: "For loops"
+    },
+    {
+        question: "In Javascript, what are the containers called used to store data?",
+        possibleAnswers: ["Methods", "Templates", "Documents", "Variables"],
+        correctAnswer: "Variables"
+    },
+    {
+        question: "What is the small image displayed next to the title tab called in HTML?",
+        possibleAnswers: ["Dogs", "Tag Friend", "Favicon", "Head"],
+        correctAnswer: "Favicon"
+    },
+    {
+        question: "Who invented jQuery?",
+        possibleAnswers: ["John Resig", "Steve Jobs", "God", "Mark Zuckerberg"],
+        correctAnswer: "Favicon"
     }
 ]
 
