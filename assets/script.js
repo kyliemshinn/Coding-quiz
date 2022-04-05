@@ -63,6 +63,7 @@ var questions=[
 //when the start button is clicked, it will initiate the game to start
 startButton.addEventListener("click", startGame)
 
+
 // a function that starts the game to play, the start button will hide, and the question box will pop up
 function startGame () {
 
@@ -75,6 +76,7 @@ currentQuestionIndex = 0;
 timer.style.display = `block`;
 
 nextQuestion();
+startTimer();
 }
 
 //setting parameters of the timer
@@ -86,12 +88,12 @@ function startTimer() {
         }
         if(timeLeft < 1) { 
             clearInterval(timerInterval); 
-            endGame(); //end game out of time scenario
+            endGame(); 
         }
 
-        timerTag.textContent = timeLeft; //update timer tag to latest time
-        timeLeft--; //decrement timer after all code runs
-    }, 1000); //1 second intervals
+        timer.textContent = timeRemain; 
+        timeRemain--; 
+    }, 1000); 
 
     return;
 }
@@ -105,14 +107,20 @@ function nextQuestion() {
 
 function displayQuestions(question) {
     questionEl.innerText=question.question;
+    selectAnswer(questionIndex);
 }
 
 //what happens when you select the correct answer
 function selectAnswer() {
 
+
 }
 
 
-function countDown () {
+// function countDown () {
+
+// }
+
+function endGame() {
 
 }
