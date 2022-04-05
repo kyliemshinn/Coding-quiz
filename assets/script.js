@@ -5,6 +5,7 @@ var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
 
 //for the questions
+var container = document.getElementById("quiz-container")
 var questionEl= document.getElementById("quiz-questions");
 var answerEl= document.getElementById("answer-btns");
 var questionIndex= 0;
@@ -21,7 +22,7 @@ var timeRemain= timerStart;
 
 //to get the buttons to shuffle at random
 var shuffledQuestions;
-var currentQuestionIndex;
+var questionIndex;
 
 var end= true;
 
@@ -71,7 +72,7 @@ startButton.classList.add("hide");
 questionBox.classList.remove("hide");
 
 shuffledQuestions= questions.sort(() => Math.random() - .5);
-currentQuestionIndex = 0;
+questionIndex = 0;
 
 timer.style.display = `block`;
 
@@ -101,7 +102,15 @@ function startTimer() {
 
 //creating a function to transition to the next question
 function nextQuestion() {
-    displayQuestions(shuffledQuestions[currentQuestionIndex])
+    questionIndex++;
+    if(questionIndex > questions.question.length) {
+        endGame();
+    } else {
+        displayQuestions(questionIndex)
+    }
+
+
+    displayQuestions(shuffledQuestions[questionIndex]); 
 
 } 
 
@@ -111,16 +120,26 @@ function displayQuestions(question) {
 }
 
 //what happens when you select the correct answer
-function selectAnswer() {
+function selectAnswer(questionIndex) {
 
+    
+}
+
+function endGame() {
+    end=true;
+    timer.style.display = "none";
+}
+
+
+
+
+
+
+function storeScores() {
 
 }
 
 
-// function countDown () {
-
-// }
-
-function endGame() {
+function showHighscores() {
 
 }

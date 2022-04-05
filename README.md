@@ -12,8 +12,8 @@ This was a more complicated project to complete with the skills provided, so rea
 
 Kylie Shinn
 
-LinkedIn: ![LinkedIn](https://www.linkedin.com/in/kylie-shinn-18b0301b7/)
-GitHub ![GitHub](https://github.com/kyliemshinn)
+* LinkedIn: ![LinkedIn](https://www.linkedin.com/in/kylie-shinn-18b0301b7/)
+* GitHub ![GitHub](https://github.com/kyliemshinn)
 
 
 ### License
