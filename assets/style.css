@@ -57,6 +57,7 @@ body {
 
 .btn:hover {
     background-color: var(--dark-purple);
+    cursor: pointer;
 }
 
 .hide {
