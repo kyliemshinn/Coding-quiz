@@ -14,7 +14,9 @@ var questionIndex= 0;
 var score=0;
 
 //for highscores
+var highScoreList= document.getElementById("high-scores-list")
 var highscores= document.getElementById("highscore-btn");
+var endQuizResults= document.querySelector("end-quiz")
 var calculatedPoints= 0;
 
 //for the timer during the quiz
@@ -69,11 +71,16 @@ startButton.addEventListener("click", startGame)
 
 // a function that starts the game to play, the start button will hide, and the question box will pop up
 function startGame () {
-end=false;
+    end=false;
+    
+    startButton.classList.add("hide");
+    questionBox.classList.remove("hide");
+    container.classList.remove("hide");
+    nextButton.classList.remove("hide");
+    highScoreList.classList.add("hide");
+    endQuizResults.classList.add("hide");
 
-startButton.classList.add("hide");
-questionBox.classList.remove("hide");
-nextButton.classList.remove("hide");
+
 
 timer.style.display = `block`;
 
@@ -139,6 +146,9 @@ if(possibleAnswers === correctAnswer) {
 function endGame() {
     end=true;
     timer.style.display = "none";
+    score=timeRemain;
+    
+    endQuizResults.classList.remove("hide");
 }
 
 
@@ -147,11 +157,26 @@ function endGame() {
 
 
 function storeScores() {
-
+    localStorage.setItem("Initials", score);
 }
 
 
+highscores.addEventListener("click", showHighscores);
+//swtiching to showing the high scores list where you can input your intials and score
 function showHighscores() {
-  highscores.addEventListener("click")
+
+startButton.classList.add("hide");
+container.classList.add("hide");
+questionBox.classList.add("hide");
+nextButton.classList.add("hide");
+highScoreList.classList.remove("hide");
+
+
+document.querySelector("#hs-span").textContent= score;
 
 }
+
+
+
+
+

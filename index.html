@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Coding Quiz</title>
-</head>
-<body>
+  </head>
+
+  <body>
+
     <header>
-        <h1>Lets Test Your Coding Knowledge!</h1>
-        <h2><button id="highscore-btn">Highscores</button></h2>
-        <h2> Time Remaining: <span id="timer"></span></h2>
+      <h1>Lets Test Your Coding Knowledge!</h1>
+      <h2><button id="highscore-btn">Highscores</button></h2>
+      <h2>Time Remaining: <span id="timer"></span></h2>
     </header>
-    <div class="quiz-container">
-        <div id="question-box" class="hide">
-            <div id="quiz-questions">Questions!</div>
-            <div id="answer-btns" class="btn-setup">
-                <button class="btn">answer 1</button>
-                <button class="btn">answer 2</button>
-                <button class="btn">answer 3</button>
-                <button class="btn">answer 4</button>
-            </div>
+
+    <div id="quiz-container">
+      <div id="question-box" class="hide">
+        <div id="quiz-questions">Questions!</div>
+        <div id="answer-btns" class="btn-setup">
+          <button class="btn">answer 1</button>
+          <button class="btn">answer 2</button>
+          <button class="btn">answer 3</button>
+          <button class="btn">answer 4</button>
         </div>
-        <div class="control-btns">
-            <button id="start-btn" class="btn">Lets Begin!</button>
-            <button id="next-btn" class="btn hide">Next..</button>
-        </div>
-        
+      </div>
+
+      <div class="control-btns">
+        <button id="start-btn" class="btn">Lets Begin!</button>
+        <button id="next-btn" class="btn hide">Next..</button>
+      </div>
     </div>
-    <div>
-        <ul>HighScores List</ul>
-        <form>
-            <input type="text">
-        </form>
+
+    <div id="end-quiz">
+      <p>Your Final Score Is: <span id="hs-span"> </span></p>
     </div>
-    <script src="./assets/script.js"> </script>
-</body>
+
+    <div id="high-scores-list" class="hide">
+      <ul>
+        HighScores List
+      </ul>
+      <form>
+        <input type="text" />
+      </form>
+    </div>
+
+    <script src="./assets/script.js"></script>
+    
+  </body>
 </html>
