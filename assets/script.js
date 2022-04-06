@@ -4,7 +4,7 @@
 var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
 var nextButton=  document.getElementById("next-btn");
-var  answerButtons= document.querySelector("ans-btn")
+var answerButtons= document.querySelector("ans-btn")
 
 //for the questions
 var container = document.getElementById("quiz-container")
@@ -16,7 +16,7 @@ var score=0;
 //for highscores
 var highScoreList= document.getElementById("high-scores-list")
 var highscores= document.getElementById("highscore-btn");
-var endQuizResults= document.querySelector("end-quiz")
+var endQuizResults= document.getElementById("end-quiz")
 var calculatedPoints= 0;
 
 //for the timer during the quiz
@@ -111,15 +111,21 @@ function startTimer() {
 
     return;
 }
-
+//when next button is clicked, execute the nextQuestion function
+nextButton.addEventListener("click", nextQuestion);
 
 //creating a function to transition to the next question
 function nextQuestion() {
-
-
+    
     displayQuestions(shuffledQuestions[questionIndex]); 
-
-    nextButton.addEventListener("click", nextQuestion);
+    
+    questionIndex++;
+    if (questionIndex >= questions.question.length){ 
+        endGame(); 
+    } else { 
+        displayQuestions(shuffledQuestions[questionIndex]); 
+    
+    
 } 
 
 function displayQuestions(question) {
@@ -147,8 +153,14 @@ function endGame() {
     end=true;
     timer.style.display = "none";
     score=timeRemain;
+
+    if(timeRemain <= 0) {
+        (score= 0);
+    }
     
     endQuizResults.classList.remove("hide");
+
+    showHighscores();
 }
 
 
@@ -176,7 +188,4 @@ document.querySelector("#hs-span").textContent= score;
 
 }
 
-
-
-
-
+}

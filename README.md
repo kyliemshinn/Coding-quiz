@@ -2,7 +2,9 @@
 
 ## Description
 This project is meant to display a timed quiz when the start button is pressed. Press "Lets Begin!" and the timer starts, giving you 60 seconds to complete the six questions given. If you get an answer wrong, the timer will decrease by 5 seconds, but if you get it correct, the time will remain normal. When you click an answser, whether correct or incorrect, the page will  display a message letting you know whether or not the answer was right. Once the quiz is complete, you will put your initials in and your high score will be tracked on the highscores page.
+The picture below displays the starting features. You can click the high scores page to view and input high scores, and shows the time remaining once the "Lets Begin!" button is pressed
 
+![startPicture](/assets/images/start-picture-code-quiz.PNG)
 
 ## Lessons Learned
 
