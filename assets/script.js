@@ -169,11 +169,16 @@ function endGame() {
 
 
 //when the submit button is clicked, the initials should append to the page under the highscores list.
-submitName.addEventListener("click", storeScores);
+submitName.addEventListener("click", function(event){
+    event.preventDefault();
+
+    storeScores();
+});
 
 function storeScores() {
+    // var inputInitials = inputName
     if(inputName) {
-        document.highScoreList.append(score + inputName);
+        highScoreList.append(score + " " + inputName.value);
     }
     localStorage.setItem(inputName, score);
 }
@@ -182,16 +187,16 @@ function storeScores() {
 highscores.addEventListener("click", showHighscores);
 //swtiching to showing the high scores list where you can input your intials and score
 function showHighscores() {
-
-startButton.classList.add("hide");
-container.classList.add("hide");
-questionBox.classList.add("hide");
-nextButton.classList.add("hide");
-highScoreList.classList.remove("hide");
-
-
-document.querySelector("#hs-span").textContent= score;
-
+    
+    startButton.classList.add("hide");
+    container.classList.add("hide");
+    questionBox.classList.add("hide");
+    nextButton.classList.add("hide");
+    highScoreList.classList.remove("hide");
+    
+    
+    document.querySelector("#hs-span").textContent= score;
+    
 }
 
 
