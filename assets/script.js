@@ -5,6 +5,7 @@ var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
 var nextButton=  document.getElementById("next-btn");
 var answerButtons= document.querySelector("ans-btn")
+var submitName= document.getElementById("submit-btn");
 
 //for the questions
 var container = document.getElementById("quiz-container")
@@ -14,9 +15,10 @@ var questionIndex= 0;
 var score=0;
 
 //for highscores
-var highScoreList= document.getElementById("high-scores-list")
+var highScoreList= document.getElementById("high-scores-list");
 var highscores= document.getElementById("highscore-btn");
-var endQuizResults= document.getElementById("end-quiz")
+var endQuizResults= document.getElementById("end-quiz");
+var inputName= document.getElementById("name")
 var calculatedPoints= 0;
 
 //for the timer during the quiz
@@ -31,7 +33,7 @@ var questionIndex;
 var end= true;
 
 //questions and answers for each of the quiz questions displayed on the page- nest in objects
-var questions=[
+var questions = [
     {
         question: "What programming language makes up the structure of the webpage?",
         possibleAnswers: ["boolean", "HTML", "Bootstrap", "Javascript"],
@@ -72,7 +74,7 @@ startButton.addEventListener("click", startGame)
 // a function that starts the game to play, the start button will hide, and the question box will pop up
 function startGame () {
     end=false;
-    
+    //only showing the elements on the page that are needed for the quiz to start
     startButton.classList.add("hide");
     questionBox.classList.remove("hide");
     container.classList.remove("hide");
@@ -120,12 +122,12 @@ function nextQuestion() {
     displayQuestions(shuffledQuestions[questionIndex]); 
     
     questionIndex++;
-    if (questionIndex >= questions.question.length){ 
+    if (questionIndex >= questions.length){ 
         endGame(); 
     } else { 
         displayQuestions(shuffledQuestions[questionIndex]); 
-    
-    
+    return;
+    }
 } 
 
 function displayQuestions(question) {
@@ -166,10 +168,14 @@ function endGame() {
 
 
 
-
+//when the submit button is clicked, the initials should append to the page under the highscores list.
+submitName.addEventListener("click", storeScores);
 
 function storeScores() {
-    localStorage.setItem("Initials", score);
+    if(inputName) {
+        document.highScoreList.append(score + inputName);
+    }
+    localStorage.setItem(inputName, score);
 }
 
 
@@ -188,4 +194,4 @@ document.querySelector("#hs-span").textContent= score;
 
 }
 
-}
+
