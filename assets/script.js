@@ -4,7 +4,7 @@
 var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
 var nextButton=  document.getElementById("next-btn");
-var  answerButtons= document.getElementById("ans-btn")
+var  answerButtons= document.querySelector("ans-btn")
 
 //for the questions
 var container = document.getElementById("quiz-container")
@@ -14,7 +14,7 @@ var questionIndex= 0;
 var score=0;
 
 //for highscores
-var highscores= document.getElementById("highscores");
+var highscores= document.getElementById("highscore-btn");
 var calculatedPoints= 0;
 
 //for the timer during the quiz
@@ -73,6 +73,7 @@ end=false;
 
 startButton.classList.add("hide");
 questionBox.classList.remove("hide");
+nextButton.classList.remove("hide");
 
 timer.style.display = `block`;
 
@@ -111,12 +112,15 @@ function nextQuestion() {
 
     displayQuestions(shuffledQuestions[questionIndex]); 
 
+    nextButton.addEventListener("click", nextQuestion);
 } 
 
 function displayQuestions(question) {
     questionEl.innerText=question.question;
   
+  
     answerEl.innerText=question.possibleAnswers;
+    console.log(answerEl)
 
 }
 
@@ -148,5 +152,6 @@ function storeScores() {
 
 
 function showHighscores() {
+  highscores.addEventListener("click")
 
 }

@@ -9,6 +9,18 @@
     --light-grey: #b2b2b2;
 }
 
+header {
+    margin: 50px;
+}
+
+#highscore-btn {
+    background-color: var(--light);
+    font-size: larger;
+    font-weight: bold;
+    border: none;
+    
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -47,7 +59,7 @@ body {
     margin-bottom: 20px;
 }
 
-.btn {
+.btn{
     background-color: #e4d1d1;
     border: solid #e4d1d1;
     border-radius: 1em;
@@ -55,7 +67,7 @@ body {
     margin: 5px;
 }
 
-.btn:hover {
+button:hover {
     background-color: var(--dark-purple);
     cursor: pointer;
 }

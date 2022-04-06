@@ -10,26 +10,30 @@
 <body>
     <header>
         <h1>Lets Test Your Coding Knowledge!</h1>
-        <h2 class="highscores">HighScores</h2>
+        <h2><button id="highscore-btn">Highscores</button></h2>
         <h2> Time Remaining: <span id="timer"></span></h2>
     </header>
     <div class="quiz-container">
         <div id="question-box" class="hide">
             <div id="quiz-questions">Questions!</div>
             <div id="answer-btns" class="btn-setup">
-                <!-- <button class="ans-btn">answer 1</button>
-                <button class="ans-btn">answer 2</button>
-                <button class="ans-btn">answer 3</button>
-                <button class="ans-btn">answer 4</button> -->
+                <button class="btn">answer 1</button>
+                <button class="btn">answer 2</button>
+                <button class="btn">answer 3</button>
+                <button class="btn">answer 4</button>
             </div>
         </div>
         <div class="control-btns">
             <button id="start-btn" class="btn">Lets Begin!</button>
             <button id="next-btn" class="btn hide">Next..</button>
         </div>
-
         
-        
+    </div>
+    <div>
+        <ul>HighScores List</ul>
+        <form>
+            <input type="text">
+        </form>
     </div>
     <script src="./assets/script.js"> </script>
 </body>
