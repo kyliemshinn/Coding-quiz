@@ -4,8 +4,11 @@
 var startButton= document.getElementById("start-btn");
 var questionBox= document.getElementById("question-box");
 var nextButton=  document.getElementById("next-btn");
-var answerButtons= document.querySelector("ans-btn")
 var submitName= document.getElementById("submit-btn");
+var buttonOne= document.getElementById("btn-1");
+var buttonTwo= document.getElementById("btn-2");
+var buttonThree= document.getElementById("btn-3");
+var buttonFour= document.getElementById("btn-4");
 
 //for the questions
 var container = document.getElementById("quiz-container")
@@ -13,6 +16,9 @@ var questionEl= document.getElementById("quiz-questions");
 var answerEl= document.getElementById("answer-btns");
 var questionIndex= 0;
 var score=0;
+
+// for user answers
+var userAnswers = ["","","","",""];
 
 //for highscores
 var highScoreList= document.getElementById("high-scores-list");
@@ -31,6 +37,9 @@ var shuffledQuestions;
 var questionIndex;
 
 var end= true;
+
+let questionCounter = 0;
+
 
 //questions and answers for each of the quiz questions displayed on the page- nest in objects
 var questions = [
@@ -128,6 +137,18 @@ function nextQuestion() {
         displayQuestions(shuffledQuestions[questionIndex]); 
     return;
     }
+//adding answers to the buttons
+for(var i =0; i > 4; i++) {
+    var currentQuestion = questions[questionCounter]
+    questions.question.textContent = currentQuestion.questions;
+
+    buttonOne.textContent = currentQuestion.possibleAnswers[0]
+    buttonTwo.textContent = currentQuestion.possibleAnswers[1]
+    buttonThree.textContent = currentQuestion.possibleAnswers[2]
+    buttonFour.textContent = currentQuestion.possibleAnswers[3]
+}
+
+    
 } 
 
 function displayQuestions(question) {
@@ -150,7 +171,7 @@ if(possibleAnswers === correctAnswer) {
 
     
 }
-
+//  when the game ends, the  high score should show,  timer goes away, and the time remaining equals the score
 function endGame() {
     end=true;
     timer.style.display = "none";

@@ -9,30 +9,30 @@
   </head>
 
   <body>
-
+<!-- header that displays to the side of the quiz container -->
     <header>
       <h1>Lets Test Your Coding Knowledge!</h1>
       <h2><button id="highscore-btn">Highscores</button></h2>
       <h2>Time Remaining: <span id="timer"></span></h2>
     </header>
-
+<!-- the quiz container that has all the quiz content -->
     <div id="quiz-container">
       <div id="question-box" class="hide">
         <div id="quiz-questions">Questions!</div>
         <div id="answer-btns" class="btn-setup">
-          <button class="btn">answer 1</button>
-          <button class="btn">answer 2</button>
-          <button class="btn">answer 3</button>
-          <button class="btn">answer 4</button>
+          <button class="btn" id="btn-1"> </button>
+          <button class="btn" id="btn-2"> </button>
+          <button class="btn" id="btn-3"> </button>
+          <button class="btn" id="btn-4"> </button>
         </div>
       </div>
-
+<!-- the control buttons- start and next- never displayed at the same time -->
       <div class="control-btns">
         <button id="start-btn" class="btn">Lets Begin!</button>
         <button id="next-btn" class="btn hide">Next..</button>
       </div>
     </div>
-
+<!-- When the quiz ends, this will be displayed- lines -->
     <div id="end-quiz" class="hide">
       <p>Your Final Score Is: <span id="hs-span"> </span></p>
     </div>
