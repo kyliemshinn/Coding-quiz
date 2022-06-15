@@ -1,223 +1,180 @@
-// all needed global variables for the game to pull from throughout
-
-//all buttons
-var startButton= document.getElementById("start-btn");
-var questionBox= document.getElementById("question-box");
-var nextButton=  document.getElementById("next-btn");
-var submitName= document.getElementById("submit-btn");
-var buttonOne= document.getElementById("btn-1");
-var buttonTwo= document.getElementById("btn-2");
-var buttonThree= document.getElementById("btn-3");
-var buttonFour= document.getElementById("btn-4");
-
-//for the questions
-var container = document.getElementById("quiz-container")
-var questionEl= document.getElementById("quiz-questions");
-var answerEl= document.getElementById("answer-btns");
-var questionIndex= 0;
-var score=0;
-
-// for user answers
-var userAnswers = ["","","","",""];
-
-//for highscores
-var highScoreList= document.getElementById("high-scores-list");
-var highscores= document.getElementById("highscore-btn");
-var endQuizResults= document.getElementById("end-quiz");
-var inputName= document.getElementById("name")
-var calculatedPoints= 0;
-
-//for the timer during the quiz
-var timer= document.getElementById("timer");
-var timerStart= 60;
-var timeRemain= timerStart;
-
-//to get the buttons to shuffle at random
-var shuffledQuestions;
-var questionIndex;
-
-var end= true;
-
-let questionCounter = 0;
-
-
 //questions and answers for each of the quiz questions displayed on the page- nest in objects
-var questions = [
-    {
-        question: "What programming language makes up the structure of the webpage?",
-        possibleAnswers: ["boolean", "HTML", "Bootstrap", "Javascript"],
-        correctAnswer: "HTML"
-    }, 
-    {
-        question: "What does CSS stand for?",
-        possibleAnswers: ["Canvas Style Sheets", "Coding Sample Sheet", "Cascading Style Sheet", "Customizable Shade Schemes"],
-        correctAnswer: "Cascading Style Sheets"
-    },
-    {
-        question: "What Javascript feature lets you run the same block of code multiple times?",
-        possibleAnswers: ["Booleans", "Maps", "Arrays", "For loops"],
-        correctAnswer: "For loops"
-    },
-    {
-        question: "In Javascript, what are the containers called used to store data?",
-        possibleAnswers: ["Methods", "Templates", "Documents", "Variables"],
-        correctAnswer: "Variables"
-    },
-    {
-        question: "What is the small image displayed next to the title tab called in HTML?",
-        possibleAnswers: ["Dogs", "Tag Friend", "Favicon", "Head"],
-        correctAnswer: "Favicon"
-    },
-    {
-        question: "Who invented jQuery?",
-        possibleAnswers: ["John Resig", "Steve Jobs", "God", "Mark Zuckerberg"],
-        correctAnswer: "Favicon"
+const questions = [
+  {
+    question:
+      "What programming language makes up the structure of the webpage?",
+    possibleAnswers: ["boolean", "HTML", "Bootstrap", "Javascript"],
+    correctAnswer: "HTML"
+  },
+  {
+    question: "What does CSS stand for?",
+    possibleAnswers: [
+      "Canvas Style Sheets",
+      "Coding Sample Sheet",
+      "Cascading Style Sheet",
+      "Customizable Shade Schemes"
+    ],
+    correctAnswer: "Cascading Style Sheets"
+  },
+  {
+    question:
+      "What Javascript feature lets you run the same block of code multiple times?",
+    possibleAnswers: ["Booleans", "Maps", "Arrays", "For loops"],
+    correctAnswer: "For loops"
+  },
+  {
+    question:
+      "In Javascript, what are the containers called used to store data?",
+    possibleAnswers: ["Methods", "Templates", "Documents", "Variables"],
+    correctAnswer: "Variables"
+  },
+  {
+    question:
+      "What is the small image displayed next to the title tab called in HTML?",
+    possibleAnswers: ["Dogs", "Tag Friend", "Favicon", "Head"],
+    correctAnswer: "Favicon"
+  },
+  {
+    question: "Who invented jQuery?",
+    possibleAnswers: ["John Resig", "Steve Jobs", "God", "Mark Zuckerberg"],
+    correctAnswer: "Favicon"
+  }
+];
+
+//set initial scores
+var score = 0;
+var currentQuestion = -1;
+var timeLeft = 0;
+var timer;
+
+// start timer
+function start() {
+  timeLeft = 90;
+  document.getElementById("timeLeft").innerHTML = timeLeft;
+
+  timer = setInterval(function () {
+    timeLeft--;
+    document.getElementById("timeLeft").innerHTML = timeLeft;
+
+    // timer ends at 0
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      endGame();
     }
-]
+  }, 1000);
 
-
-//when the start button is clicked, it will initiate the game to start
-startButton.addEventListener("click", startGame)
-
-
-// a function that starts the game to play, the start button will hide, and the question box will pop up
-function startGame () {
-    end=false;
-    //only showing the elements on the page that are needed for the quiz to start
-    startButton.classList.add("hide");
-    questionBox.classList.remove("hide");
-    container.classList.remove("hide");
-    nextButton.classList.remove("hide");
-    highScoreList.classList.add("hide");
-    endQuizResults.classList.add("hide");
-
-
-
-timer.style.display = `block`;
-
-shuffledQuestions= questions.sort(() => Math.random() - .5);//either less than zero or above zero 50% of time
-questionIndex = 0;
-
-
-nextQuestion();
-startTimer();
+  next();
+}
+//Adds score to local storage
+function setScore() {
+  localStorage.setItem("highscore", score);
+  localStorage.setItem("highscoreName", document.getElementById("name").value);
+  getScore();
 }
 
-//setting parameters of the timer
-function startTimer() {
-    end=false;
-    var timerInterval = setInterval(function() {
-        if(end) { 
-            clearInterval(timerInterval); 
-            return;
-        }
-        if(timeRemain < 1) { 
-            clearInterval(timerInterval); 
-            endGame(); 
-        }
+function getScore() {
+  var quizContent =
+    `
+    <h2>` +
+    localStorage.getItem("highscoreName") +
+    `'s highscore is:</h2>
+    <h1>` +
+    localStorage.getItem("highscore") +
+    `</h1><br>
+    <button class="btn" onclick="clearScore()">Clear score</button><button class="btn" onclick="resetGame()">Play again!</button>
+    
+    `;
 
-        timer.textContent = timeRemain; 
-        timeRemain--; 
-    }, 1000); 
+  document.getElementById("quizBody").innerHTML = quizContent;
+}
 
+//clear score from storage
+function clearScore() {
+  localStorage.setItem("highscore", "");
+  localStorage.setItem("highscoreName", "");
+
+  resetGame();
+}
+
+//Reset the quiz
+function resetGame() {
+  clearInterval(timer);
+  score = 0;
+  currentQuestion = -1;
+  timeLeft = 0;
+  timer = null;
+
+  document.getElementById("timeLeft").innerHTML = timeLeft;
+
+  var quizContent = `
+    <h1>
+        Coding Quiz!
+    </h1>
+    <h3>
+        Click Start to play!
+    </h3>
+    <button class="btn" onclick="start()">Start!</button>`;
+
+  document.getElementById("quizBody").innerHTML = quizContent;
+}
+
+//Deduct 5 seconds when user guesses wrong answer
+function incorrect() {
+  timeLeft -= 5;
+  next();
+}
+
+//Increase the score by 3 on correct answer
+function correct() {
+  score += 3;
+  next();
+}
+// loop through all the questions until hit the end of the questions list
+function next() {
+  currentQuestion++;
+
+  if (currentQuestion > questions.length - 1) {
+    endGame();
     return;
-}
-//when next button is clicked, execute the nextQuestion function
-nextButton.addEventListener("click", nextQuestion);
+  }
 
-//creating a function to transition to the next question
-function nextQuestion() {
-    
-    displayQuestions(shuffledQuestions[questionIndex]); 
-    
-    questionIndex++;
-    if (questionIndex >= questions.length){ 
-        endGame(); 
-    } else { 
-        displayQuestions(shuffledQuestions[questionIndex]); 
-    return;
+  // render after game text
+  function endGame() {
+    clearInterval(timer);
+
+    var quizContent = `
+        <h2>Game over!</h2>
+        <h3>You got a  ${score} /100!</h3>
+        <input class="input-group-text inputScore" type="text" id="name" placeholder="Enter Initials">
+        <button class="btn" onclick="setScore()">Set score!</button>`;
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+  }
+
+  //display quiz content at current question index
+  var quizContent = "<h2>" + questions[currentQuestion].question + "</h2>";
+
+  for (
+    var buttonLoop = 0;
+    buttonLoop < questions[currentQuestion].possibleAnswers.length;
+    buttonLoop++
+  ) {
+    var buttonCode = `<button class="btn" onclick=\"[CORRECTANSWER]\">[CHOICE]</button>`;
+    buttonCode = buttonCode.replace(
+      "[CHOICE]",
+      questions[currentQuestion].possibleAnswers[buttonLoop]
+    );
+
+    if (
+      questions[currentQuestion].possibleAnswers[buttonLoop] ==
+      questions[currentQuestion].correctAnswer
+    ) {
+      buttonCode = buttonCode.replace("[CORRECTANSWER]", "correct()");
+    } else {
+      buttonCode = buttonCode.replace("[CORRECTANSWER]", "incorrect()");
     }
-//adding answers to the buttons
-for(var i =0; i > 4; i++) {
-    var currentQuestion = questions[questionCounter]
-    questions.question.textContent = currentQuestion.questions;
+    quizContent += buttonCode;
+  }
 
-    buttonOne.textContent = currentQuestion.possibleAnswers[0]
-    buttonTwo.textContent = currentQuestion.possibleAnswers[1]
-    buttonThree.textContent = currentQuestion.possibleAnswers[2]
-    buttonFour.textContent = currentQuestion.possibleAnswers[3]
+  document.getElementById("quizBody").innerHTML = quizContent;
 }
-
-    
-} 
-
-function displayQuestions(question) {
-    questionEl.innerText=question.question;
-  
-  
-    answerEl.innerText=question.possibleAnswers;
-    console.log(answerEl)
-
-}
-
-
-//what happens when you select the correct answer
-function selectAnswer(e) {
-if(possibleAnswers === correctAnswer) {
-    alert("Correct!")
-} else { alert("Wrong:(")
-
-}
-
-    
-}
-//  when the game ends, the  high score should show,  timer goes away, and the time remaining equals the score
-function endGame() {
-    end=true;
-    timer.style.display = "none";
-    score=timeRemain;
-
-    if(timeRemain <= 0) {
-        (score= 0);
-    }
-    
-    endQuizResults.classList.remove("hide");
-
-    showHighscores();
-}
-
-
-
-
-//when the submit button is clicked, the initials should append to the page under the highscores list.
-submitName.addEventListener("click", function(event){
-    event.preventDefault();
-
-    storeScores();
-});
-
-function storeScores() {
-    // var inputInitials = inputName
-    if(inputName) {
-        highScoreList.append(score + " " + inputName.value);
-    }
-    localStorage.setItem(inputName, score);
-}
-
-
-highscores.addEventListener("click", showHighscores);
-//swtiching to showing the high scores list where you can input your intials and score
-function showHighscores() {
-    
-    startButton.classList.add("hide");
-    container.classList.add("hide");
-    questionBox.classList.add("hide");
-    nextButton.classList.add("hide");
-    highScoreList.classList.remove("hide");
-    
-    
-    document.querySelector("#hs-span").textContent= score;
-    
-}
-
-

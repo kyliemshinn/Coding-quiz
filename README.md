@@ -8,6 +8,12 @@ The picture below displays the starting features. You can click the high scores 
 
 ![startPicture](/assets/images/start-picture-code-quiz.PNG)
 
+## Usage
+
+This web application is functioning completely from front end technologies. There is no pre-installation needed for this app to run. Reference the video below for full usage.
+
+ADD GIF
+
 ## Technologies Used
 
 * HTML5
