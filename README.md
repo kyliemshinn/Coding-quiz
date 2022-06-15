@@ -8,9 +8,11 @@ The picture below displays the starting features. You can click the high scores 
 
 ![startPicture](/assets/images/start-picture-code-quiz.PNG)
 
-## Lessons Learned
+## Technologies Used
 
-This was a more complicated project to complete with the skills provided, so really dialing in on the current skill set is crucial. Taking this project piece by piece was important to ensure all steps and criteria were met. Page organization makes all the difference when you are getting your functions to work 
+* HTML5
+* CSS
+* JavaScript
 
 ### Author
 
