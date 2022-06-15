@@ -37,7 +37,7 @@ const questions = [
   {
     question: "Who invented jQuery?",
     possibleAnswers: ["John Resig", "Steve Jobs", "God", "Mark Zuckerberg"],
-    correctAnswer: "Favicon"
+    correctAnswer: "John Resig"
   }
 ];
 
@@ -144,7 +144,7 @@ function next() {
 
     var quizContent = `
         <h2>Game over!</h2>
-        <h3>You got a  ${score} /100!</h3>
+        <h3>You got a  ${score} /15!</h3>
         <input class="input-group-text inputScore" type="text" id="name" placeholder="Enter Initials">
         <button class="btn" onclick="setScore()">Set score!</button>`;
 
@@ -159,9 +159,9 @@ function next() {
     buttonLoop < questions[currentQuestion].possibleAnswers.length;
     buttonLoop++
   ) {
-    var buttonCode = `<button class="btn" onclick=\"[CORRECTANSWER]\">[CHOICE]</button>`;
+    var buttonCode = `<button class="btn" onclick=\"[CORRECTANSWER]\">[POSSIBLEANSWER]</button>`;
     buttonCode = buttonCode.replace(
-      "[CHOICE]",
+      "[POSSIBLEANSWER]",
       questions[currentQuestion].possibleAnswers[buttonLoop]
     );
 
